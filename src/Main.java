@@ -41,16 +41,16 @@ public class Main {
                 .sorted(Comparator.comparing(Person::getFamily))
                 .collect(Collectors.toList());
 
-        System.out.println("Работоспособные мужчины" + workableMan);
-
+        
+        workableMan.forEach(System.out::println);
         List<Person> workableWoman = persons.stream()
                 .filter((Person educations) -> educations.getEducation() == Education.HIGHER)
                 .filter((Person x) -> x.getSex() == Sex.WOMEN && x.getAge() >= 18 && (x.getAge() < 61))
                 .sorted(Comparator.comparing(Person::getFamily))
                 .collect(Collectors.toList());
 
-        System.out.println("Работоспособные женщины" + workableWoman);
 
+        workableWoman.forEach(System.out::println);
 
     }
 }
