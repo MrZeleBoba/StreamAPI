@@ -23,7 +23,7 @@ public class Main {
         }
         //1.Поиск несовершеннолетних
         long count = persons.stream()
-                .filter((Person minors) -> minors.getAge() < 18)
+                .filter(person -> person.getAge() < 18)
                 .count();
         System.out.println(count);
 
