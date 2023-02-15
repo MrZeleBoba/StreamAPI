@@ -29,28 +29,21 @@ public class Main {
 
         //2.Список призывников
         List<String> conscript = persons.stream()
-                .filter((Person x) -> x.getAge() >= 18 && (x.getAge() <= 27))
+                .filter(person -> person.getSex() == Sex.MAN)
+                .filter(person -> person.getAge() >= 18 && (person.getAge() <= 27))
                 .map(Person::getFamily)
                 .collect(Collectors.toList());
-        System.out.println(conscript);
+        conscript.forEach(System.out::println);
 
         //3.Работоспособные люди
-        List<Person> workableMan = persons.stream()
-                .filter((Person educations) -> educations.getEducation() == Education.HIGHER)
-                .filter((Person y) -> y.getSex() == Sex.MAN && y.getAge() >= 18 && (y.getAge() < 66))
+        List<Person> work = persons.stream()
+                .filter(person -> person.getEducation() == (Education.HIGHER))
+                .filter(person -> person.getSex() == Sex.MAN ? person.getAge() >= 18 && (person.getAge() <= 66)
+                        : person.getAge() >= 18 && (person.getAge() < 61))
                 .sorted(Comparator.comparing(Person::getFamily))
                 .collect(Collectors.toList());
+        work.forEach(System.out::println);
 
-        
-        workableMan.forEach(System.out::println);
-        List<Person> workableWoman = persons.stream()
-                .filter((Person educations) -> educations.getEducation() == Education.HIGHER)
-                .filter((Person x) -> x.getSex() == Sex.WOMEN && x.getAge() >= 18 && (x.getAge() < 61))
-                .sorted(Comparator.comparing(Person::getFamily))
-                .collect(Collectors.toList());
-
-
-        workableWoman.forEach(System.out::println);
 
     }
 }
